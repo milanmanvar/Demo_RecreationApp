@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RadioGroup android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/alert_radioAtTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="At the time of the event"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/alert_radioFiveMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5 minutes before"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/alert_radioFifteenMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15 minutes before"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/alert_radioThirtyMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30 minutes before"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/alert_radioOneHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1 hour before"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/alert_radioTwoHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 hours before"
+            android:textColor="@android:color/white" />
+    </RadioGroup>
+
+
+</LinearLayout>
