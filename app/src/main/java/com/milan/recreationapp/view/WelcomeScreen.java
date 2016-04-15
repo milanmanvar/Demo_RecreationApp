@@ -321,7 +321,17 @@ public class WelcomeScreen extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.activity_welcome_tv_lets_go:
-                signUpApicall();
+
+                if(etYourName.getText().toString().trim().length()>0) {
+                    if(!btnChooseYourClub.getText().toString().equals(getString(R.string.choose_your_club_hint_txt))){
+                        signUpApicall();
+                    }else{
+                        Utils.displayDialog("Whoops!","Please choose any club", WelcomeScreen.this);
+                    }
+                }else{
+                    Utils.displayDialog("Whoops!","Please enter a name", WelcomeScreen.this);
+                }
+
 //                Intent intent = new Intent(WelcomeScreen.this, HomeScreen.class);
 //                startActivity(intent);
 //                finish();

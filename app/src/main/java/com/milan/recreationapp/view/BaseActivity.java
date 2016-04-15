@@ -1,9 +1,11 @@
 package com.milan.recreationapp.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.milan.recreationapp.R;
@@ -31,6 +33,8 @@ public class BaseActivity extends Activity implements View.OnClickListener{
 
 
         TextView tvTitle = (TextView)actionbarView.findViewById(R.id.actionbar_layout_tv_title);
+        ImageView ivMyclass = (ImageView) actionbarView.findViewById(R.id.actionbar_layout_iv_myclass);
+        ivMyclass.setOnClickListener(this);
         tvTitle.setText(title);
 
         getActionBar().setCustomView(actionbarView);
@@ -39,6 +43,12 @@ public class BaseActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+
+        if(v.getId() == R.id.actionbar_layout_iv_myclass){
+            Intent intent = new Intent(this,SavedClassActivity.class);
+            startActivity(intent);
+
+        }
 
     }
 

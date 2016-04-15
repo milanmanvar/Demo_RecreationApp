@@ -1,22 +1,35 @@
 package com.milan.recreationapp.view;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.milan.recreationapp.R;
 import com.milan.recreationapp.ReCreationApplication;
 import com.milan.recreationapp.model.ClubTimeTable_New;
+import com.milan.recreationapp.util.Constant;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by utsav.k on 06-04-2016.
@@ -74,7 +87,8 @@ public class ClubClassDetailActivity extends BaseActivity {
                     reCreationApplication.getDatabase().saveToMyClass(clubDayTime.getId());
                     btnSave.setVisibility(View.GONE);
                     txtLblSaved.setVisibility(View.VISIBLE);
-                    confirmationMessage();
+                    //confirmationMessage();
+                    createGymClassApicall();
                 }
             });
             if (clubDayTime.getEventId() == 0) {
@@ -109,6 +123,69 @@ public class ClubClassDetailActivity extends BaseActivity {
             }
         });
 
+    }
+
+
+    private void createGymClassApicall() {
+        final ProgressDialog pd = ProgressDialog.show(ClubClassDetailActivity.this, "", "Please wait", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.saveMyClassUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (pd != null && pd.isShowing())
+                            pd.dismiss();
+
+                        confirmationMessage();
+
+                    }
+                },
+
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                        error.printStackTrace();
+                        if (pd != null && pd.isShowing())
+                            pd.dismiss();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String id = UUID.randomUUID().toString();
+                params.put("id", id);
+
+                params.put("userId", reCreationApplication.sharedPreferences.getString("userguid",""));
+                params.put("name", clubDayTime.getClassName());
+                params.put("clubName", reCreationApplication.sharedPreferences.getString("club",""));
+
+                Log.e("sign up req param:", "" + params.toString());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //  headers.put("Content-Type", "application/x-www-form-urlencoded");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                //Toast.makeText(WelcomeScreen.this,""+response.toString(),Toast.LENGTH_LONG).show();
+                Log.e("status code",""+response.statusCode);
+                return super.parseNetworkResponse(response);
+            }
+
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+        };
+        reCreationApplication.addToRequestQueue(stringRequest);
     }
 
     private void confirmationMessage() {
