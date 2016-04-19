@@ -1,6 +1,7 @@
 package com.milan.recreationapp.view;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,5 +54,31 @@ public class ClubInfoActivity extends BaseActivity {
                 lHoursDetail.addView(vBody);
             }
         }
+    }
+
+    @Override
+    public void setUpActionBar(String title) {
+
+            //View actionbarView = LayoutInflater.from(this).inflate(
+             //       R.layout.actionbar_layout_for_alert, null, true);
+
+        getActionBar().setCustomView(R.layout.actionbar_layout_for_alert);
+            TextView tvTitle = (TextView) findViewById(R.id.actionbar_layout_tv_title);
+            tvTitle.setText(title);
+            TextView tvClose = (TextView) findViewById(R.id.actionbar_layout_tv_close);
+            final TextView tvAdd = (TextView) findViewById(R.id.actionbar_layout_tv_add);
+            tvClose.setVisibility(View.VISIBLE);
+            tvClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        tvAdd.setVisibility(View.GONE);
+            tvAdd.setText("Edit");
+
+
+
+
     }
 }

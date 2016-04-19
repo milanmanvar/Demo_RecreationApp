@@ -66,15 +66,36 @@ public class ClubLocationListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+
+        if(position == listItem.size()-1){
+            holder.imgInfo.setVisibility(View.INVISIBLE);
+            holder.imgHour.setVisibility(View.INVISIBLE);
+        }else{
+            holder.imgInfo.setVisibility(View.VISIBLE);
+            holder.imgHour.setVisibility(View.VISIBLE);
+        }
+
         holder.txtName.setText(listItem.get(position).getName());
         if (listItem.get(position).is24Hour())
             holder.imgHour.setVisibility(View.VISIBLE);
         else
             holder.imgHour.setVisibility(View.INVISIBLE);
+
+
+
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((OurClubActivity) context).changeLocation(listItem.get(position).getLat(), listItem.get(position).getLng(), listItem.get(position).getName());
+
+                if (position == listItem.size()-1) {
+
+                    ((OurClubActivity) context).mapZoomOut();
+                }else{
+                    ((OurClubActivity) context).changeLocation(listItem.get(position).getLat(), listItem.get(position).getLng(), listItem.get(position).getName());
+                }
+
+
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {

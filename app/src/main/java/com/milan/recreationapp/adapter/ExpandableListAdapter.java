@@ -1,6 +1,7 @@
 package com.milan.recreationapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.milan.recreationapp.R;
 import com.milan.recreationapp.ReCreationApplication;
 import com.milan.recreationapp.model.ClubTimeTable_New;
+import com.milan.recreationapp.view.ClubClassDetailActivity;
 import com.milan.recreationapp.view.SavedClassActivity;
 
 import java.util.List;
@@ -64,7 +66,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         ImageView imgEdit = (ImageView) convertView
                 .findViewById(R.id.row_timetable_imgRemove);
-        if (((SavedClassActivity)context).isDeleteVisible)
+        if (((SavedClassActivity) context).isDeleteVisible)
             imgEdit.setVisibility(View.VISIBLE);
         else
             imgEdit.setVisibility(View.GONE);
@@ -75,7 +77,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 ((SavedClassActivity) context).deleteSavedClass(expandedListText);
             }
         });
-
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iClass = new Intent(context, ClubClassDetailActivity.class);
+                iClass.putExtra("clubdaytime", expandedListText);
+                context.startActivity(iClass);
+            }
+        });
         return convertView;
     }
 
@@ -84,7 +93,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return this.expandableListDetail
                 .get(this.expandableListTitle.get(listPosition)).size();
     }
-
 
 
     @Override
@@ -113,7 +121,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.row_timetable_txtTitle);
-        listTitleTextView.setText(listTitle.toUpperCase().toString().trim());
+        listTitleTextView.setText(listTitle.toString().trim().substring(0, 1).toUpperCase() + listTitle.toString().trim().substring(1));
         return convertView;
     }
 

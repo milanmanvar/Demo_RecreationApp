@@ -160,8 +160,13 @@ public class ClubClassDetailActivity extends BaseActivity {
                 params.put("userId", reCreationApplication.sharedPreferences.getString("userguid",""));
                 params.put("name", clubDayTime.getClassName());
                 params.put("clubName", reCreationApplication.sharedPreferences.getString("club",""));
+                params.put("duration", clubDayTime.getDuration());
+                params.put("location", clubDayTime.getLocation());
+                params.put("instructor", clubDayTime.getInstructor());
+                params.put("gymClassDescription", clubDayTime.getDesc());
 
-                Log.e("sign up req param:", "" + params.toString());
+
+                Log.e("create class param:", "" + params.toString());
 
                 return params;
             }

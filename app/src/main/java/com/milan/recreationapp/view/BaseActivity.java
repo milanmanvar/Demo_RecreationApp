@@ -20,24 +20,32 @@ public class BaseActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
 
 
-        getActionBar().setDisplayShowCustomEnabled(true);
+
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayUseLogoEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(false);
+        getActionBar().setDisplayShowCustomEnabled(true);
 
     }
 
     public void setUpActionBar(String title){
-        View actionbarView = LayoutInflater.from(this).inflate(
-                R.layout.actionbar_layout, null, true);
+       // View actionbarView = LayoutInflater.from(this).inflate(
+        //        R.layout.actionbar_layout, null, false);
 
 
-        TextView tvTitle = (TextView)actionbarView.findViewById(R.id.actionbar_layout_tv_title);
-        ImageView ivMyclass = (ImageView) actionbarView.findViewById(R.id.actionbar_layout_iv_myclass);
+//        TextView tvTitle = (TextView)actionbarView.findViewById(R.id.actionbar_layout_tv_title);
+//        ImageView ivMyclass = (ImageView) actionbarView.findViewById(R.id.actionbar_layout_iv_myclass);
+//        ivMyclass.setOnClickListener(this);
+//        tvTitle.setText(title);
+
+        getActionBar().setCustomView(R.layout.actionbar_layout);
+
+        TextView tvTitle = (TextView)findViewById(R.id.actionbar_layout_tv_title);
+        ImageView ivMyclass = (ImageView) findViewById(R.id.actionbar_layout_iv_myclass);
+        ImageView ivBack = (ImageView) findViewById(R.id.actionbar_layout_iv_back);
         ivMyclass.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
         tvTitle.setText(title);
-
-        getActionBar().setCustomView(actionbarView);
     }
 
 
@@ -47,6 +55,10 @@ public class BaseActivity extends Activity implements View.OnClickListener{
         if(v.getId() == R.id.actionbar_layout_iv_myclass){
             Intent intent = new Intent(this,SavedClassActivity.class);
             startActivity(intent);
+
+        }else if(v.getId() == R.id.actionbar_layout_iv_back){
+
+            finish();
 
         }
 

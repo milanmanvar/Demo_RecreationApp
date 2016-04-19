@@ -344,6 +344,15 @@ public class DBHelper extends SQLiteOpenHelper {
                     timeTables.add(club);
 
                 } while (cursor.moveToNext());
+
+
+                club = new ClubModel_New();
+                club.setId(-1);
+                club.setName("Show all clubs");
+                club.setIs24Hour(false);
+                timeTables.add(club);
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -448,7 +457,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             myDataBase.beginTransaction();
             String sql = String.format(queryUpdate, eventId, id);
-            Log.e("event update sql:",""+sql);
+            Log.e("event update sql:", "" + sql);
             myDataBase.execSQL(sql);
             myDataBase.setTransactionSuccessful();
         } catch (SQLException e) {
@@ -523,13 +532,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-
     public List<ClubTimeTable_New> getSavedClubTimeTableData(String day) {
         List<ClubTimeTable_New> timeTables = new ArrayList<>();
         String sql = "SELECT * FROM ClubsDetail WHERE IsSaved = '1' AND Day = '%s' ORDER BY _id";
         Cursor cursor = null;
         try {
-            cursor = myDataBase.rawQuery(String.format(sql,day), null);
+            cursor = myDataBase.rawQuery(String.format(sql, day), null);
             Log.e("cursor:", "" + cursor.getCount());
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();

@@ -50,7 +50,7 @@ public class SavedClassActivity extends Activity {
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayUseLogoEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(false);
-        setUpActionBar("My Class");
+        setUpActionBar("My Classes");
 //        list = application.getDatabase().getSavedClubTimeTable();
 //        String temp = "";
 //        for (int i = 0; i < list.size(); i++) {
@@ -116,7 +116,7 @@ public class SavedClassActivity extends Activity {
         tvTitle.setText(title);
         TextView tvClose = (TextView) actionbarView.findViewById(R.id.actionbar_layout_tv_close);
         final TextView tvAdd = (TextView) actionbarView.findViewById(R.id.actionbar_layout_tv_add);
-        tvClose.setVisibility(View.INVISIBLE);
+        tvClose.setVisibility(View.VISIBLE);
         tvClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

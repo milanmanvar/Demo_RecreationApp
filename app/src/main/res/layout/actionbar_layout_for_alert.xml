@@ -34,10 +34,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@id/actionbar_layout_tv_add"
-        android:layout_toRightOf="@id/actionbar_layout_tv_close"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:lines="1"
+        android:singleLine="true"
+        android:ellipsize="end"
+
+
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="18sp"

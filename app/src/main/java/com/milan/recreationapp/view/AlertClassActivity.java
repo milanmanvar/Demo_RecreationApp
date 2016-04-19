@@ -143,7 +143,7 @@ public class AlertClassActivity extends Activity {
             values.put(CalendarContract.Events.EVENT_LOCATION, timeTable_new.getLocation());
             values.put(CalendarContract.Events.DESCRIPTION, timeTable_new.getDesc());
             values.put(CalendarContract.Events.CALENDAR_ID, 1);
-//            values.put(CalendarContract.Events.RRULE, "FREQ=WEEKLY");
+            values.put(CalendarContract.Events.RRULE, "FREQ=WEEKLY");
             values.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance()
                     .getTimeZone().getID());
             System.out.println(Calendar.getInstance().getTimeZone().getID());

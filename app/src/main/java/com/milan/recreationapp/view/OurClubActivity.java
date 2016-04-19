@@ -2,6 +2,7 @@ package com.milan.recreationapp.view;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class OurClubActivity extends BaseActivity {
         appPreferences = ((ReCreationApplication) getApplication()).sharedPreferences;
 //        clubModels = Utils.parseClubListXML(appPreferences.getString("clublist", ""));
         setUpActionBar("Our Clubs");
+        findViewById(R.id.actionbar_layout_iv_myclass).setVisibility(View.GONE);
         clubModels = (((ReCreationApplication) getApplication()).getDatabase().getClubList());
         listLocations = (ListView) findViewById(R.id.listLocation);
         listLocations.setAdapter(new ClubLocationListAdapter(this, clubModels));
@@ -88,5 +90,11 @@ public class OurClubActivity extends BaseActivity {
         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lat, lng)).zoom(12).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
+
+    public void mapZoomOut(){
+
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(6.0f));
+    }
+
 
 }

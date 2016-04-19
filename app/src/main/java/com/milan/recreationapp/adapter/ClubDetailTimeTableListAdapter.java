@@ -65,7 +65,12 @@ public class ClubDetailTimeTableListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.txtName.setText(listItem.get(position).getDay());
+        if (position == 0)
+            holder.txtName.setText("Today");
+        else if (position == 1)
+            holder.txtName.setText("Tomorrow");
+        else
+            holder.txtName.setText(listItem.get(position).getDay().toString().trim().substring(0, 1).toUpperCase() + listItem.get(position).getDay().toString().trim().substring(1));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
