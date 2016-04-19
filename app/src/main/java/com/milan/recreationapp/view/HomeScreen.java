@@ -22,7 +22,7 @@ public class HomeScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
         txtClubName = (TextView) findViewById(R.id.home_clubName);
-        txtClubName.setText(((ReCreationApplication) getApplication()).sharedPreferences.getString("club", "") + "\n TIMETABLE");
+        txtClubName.setText(((ReCreationApplication) getApplication()).sharedPreferences.getString("club", "").toUpperCase() + "\n TIMETABLE");
     }
 
     public void onHomeMenuClick(View v) {
