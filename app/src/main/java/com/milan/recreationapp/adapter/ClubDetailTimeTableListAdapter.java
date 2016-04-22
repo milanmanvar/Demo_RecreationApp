@@ -71,11 +71,15 @@ public class ClubDetailTimeTableListAdapter extends BaseAdapter {
             holder.txtName.setText("Tomorrow");
         else
             holder.txtName.setText(listItem.get(position).getDay().toString().trim().substring(0, 1).toUpperCase() + listItem.get(position).getDay().toString().trim().substring(1));
+
+        convertView.setTag(holder.txtName.getText().toString());
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent iClubTimeTableDetial = new Intent(context, ClubTimeTableDetailActivity.class);
                 iClubTimeTableDetial.putExtra("timetable", listItem.get(position));
+                iClubTimeTableDetial.putExtra("title",v.getTag().toString());
                 context.startActivity(iClubTimeTableDetial);
             }
         });

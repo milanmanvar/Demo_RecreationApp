@@ -29,7 +29,13 @@ public class ClubTimeTableDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_club_timetable_detail);
         lTimeTable = (LinearLayout) findViewById(R.id.clubtimetable_detail_l);
         application = ((ReCreationApplication) getApplication());
-        setUpActionBar(application.sharedPreferences.getString("club", ""));
+        //setUpActionBar(application.sharedPreferences.getString("club", ""));
+        if (this.getIntent().hasExtra("title")) {
+            clubTimeTable = (ClubTimeTable_New) this.getIntent().getSerializableExtra("timetable");
+            setUpActionBar(getIntent().getExtras().getString("title"));
+        }else{
+            setUpActionBar(application.sharedPreferences.getString("club", ""));
+        }
 
     }
 
@@ -61,7 +67,7 @@ public class ClubTimeTableDetailActivity extends BaseActivity {
 
                 View vBody = getLayoutInflater().inflate(R.layout.row_timetable, null);
                 TextView txtName = (TextView) vBody.findViewById(R.id.row_timetable_txtName);
-                txtName.setText(list.get(i).getTime() + " " + list.get(i).getClassName());
+                txtName.setText(list.get(i).getTime() + " " + list.get(i).getClassName().substring(0,1).toUpperCase()+list.get(i).getClassName().substring(1).toLowerCase());
                 ImageView imgCheck = (ImageView) vBody.findViewById(R.id.row_timetable_imgCheck);
                 imgCheck.setVisibility(list.get(i).getIsSaved() == 1 ? View.VISIBLE : View.INVISIBLE);
                 final int finalI = i;

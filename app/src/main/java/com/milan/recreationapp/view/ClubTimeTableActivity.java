@@ -81,7 +81,7 @@ public class ClubTimeTableActivity extends BaseActivity {
         selectedClubPos = reCreationApplication.sharedPreferences.getInt("clubposition", 0);
         clubTimeTables = reCreationApplication.getDatabase().getClubTimeTableFromName(selectedClub);
         btnClub.setText(selectedClub);
-        setUpActionBar(selectedClub+" Timetable");
+        setUpActionBar(selectedClub+"");
         findViewById(R.id.actionbar_layout_iv_myclass).setVisibility(View.GONE);
         ArrayList<ClubTimeTable_New> temp = clubTimeTables;
         for (int i = 0; i < temp.size(); i++) {

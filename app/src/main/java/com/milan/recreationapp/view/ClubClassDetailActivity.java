@@ -70,7 +70,7 @@ public class ClubClassDetailActivity extends BaseActivity {
             setUpActionBar(clubDayTime.getClassName());
             txtDuration.setText(clubDayTime.getDuration());
             txtInst.setText(clubDayTime.getInstructor());
-            txtTime.setText(clubDayTime.getTime());
+            txtTime.setText(clubDayTime.getDay() + " "+clubDayTime.getTime());
             txtDesc.setText(clubDayTime.getDesc());
             txtLocation.setText(clubDayTime.getLocation());
             if (clubDayTime.getIsSaved() == 1) {

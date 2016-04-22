@@ -35,6 +35,8 @@
         <ListView
             android:id="@+id/clubtimetable_list"
             android:layout_width="match_parent"
+            android:choiceMode="singleChoice"
+            android:listSelector="@drawable/selector_listview_click"
             android:layout_height="match_parent"
             android:layout_above="@id/clubtimetable_lblMyClub" />
     </RelativeLayout>
